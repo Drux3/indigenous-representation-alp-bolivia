@@ -6,11 +6,11 @@ Open datasets and reproducible descriptive tables on Indigenous representation i
 
 This repository is associated with the research:
 
-**[Título de tu investigación]**
+¿Presentes? Representación descriptiva de los pueblos indígenas en la Asamblea Legislativa Plurinacional de Bolivia (2010 - 2020)
 
 Author: Andrés Huanca Rodrigues
 
 [Read the full research paper](ENLACE)
 
-The research examines Indigenous representation in the
+The research examines Indigenous descriptive representation in the
 Bolivian Plurinational Legislative Assembly.
