@@ -33,13 +33,9 @@ library(knitr)
 ```{r}
 # Cargando los datos
 
-ALP_2010_2015 <- read.csv("/home/drux/Documentos/Escritos  y trabajos mios/Artículos Científicos/Representación indígena/2026 Representación descriptiva/Projects/indigenous-representation-alp-bolivia/data/ALP_2010_2015.csv") %>%
-  mutate(INDIGENA = ifelse(INDIGENA == 0, "No indígena", "Indígena"),
-         GENERO = ifelse(GENERO == "H", "Hombre", "Mujer"))
+ALP_2010_2015 <- read.csv("data/ALP_2010_2015.csv")
 
-ALP_2015_2020 <- read.csv("/home/drux/Documentos/Escritos  y trabajos mios/Artículos Científicos/Representación indígena/2026 Representación descriptiva/Projects/indigenous-representation-alp-bolivia/data/ALP_2015_2020.csv") %>%
-  mutate(INDIGENA = ifelse(INDIGENA == 0, "No indígena", "Indígena"),
-         GENERO = ifelse(GENERO == "H", "Hombre", "Mujer"))
+ALP_2015_2020 <- read.csv("data/ALP_2015_2020.csv")
 
 ```
 
