@@ -20,8 +20,7 @@ The document presents tables on:
 - Indigenous representation by political party.
 - Indigenous representation by electoral constituency.
 - Indigenous representation by social organization and gender.
-- Representation by Indigenous nation and people.
-- Indigenous representation in positions of legislative power.
+- Representation by Indigenous nation.
 
 ## Repository Structure
 
@@ -57,23 +56,6 @@ The repository contains two CSV datasets:
 
 Both datasets contain information on legislators and their political, social, and demographic characteristics.
 
-### Variables
-
-| Variable | Description |
-|---|---|
-| `NOMBRE` | Legislator's name |
-| `CAMARA` | Legislative chamber |
-| `DEPARTAMENTO` | Department represented |
-| `PARTIDO` | Political party |
-| `ORG_SOC` | Social organization |
-| `PROFESION` | Profession or occupation |
-| `INDIGENA` | Indigenous identification (1 = Yes; 0 = No) |
-| `GENERO` | Gender |
-| `NACIMIENTO` | Place of birth |
-| `CIRCUNS` | Type of electoral constituency |
-| `ETNICIDAD` | Specific ethnic identification |
-
-For further information about the variables, consult the [Codebook](documentation/codebook.md).
 
 ## Documentation and Tables
 
