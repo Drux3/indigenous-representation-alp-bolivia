@@ -1,0 +1,450 @@
+---
+title: 'Representación indígena: Tablas y datos sobre sus características políticas, sociales, de género y étnicas (2010–2020)'
+author: "Andrés Huanca Rodrigues"
+date: "2026-11-20"
+output: html_document
+---
+
+```{r, echo=FALSE}
+knitr::opts_chunk$set(echo=FALSE, error=FALSE, warning=FALSE, message=FALSE)
+```
+
+## Introducción
+
+En este documento se presentan un conjunto de tablas que describen las características de la representación indígena en la Asamblea Legislativa Plurinacional de Bolivia del 2010 al 2020. Constituye un complemento digital del artículo *¿Presentes? Representación descriptiva de los pueblos indígenas en la Asamblea Legislativa Plurinacional de Bolivia (2010 - 2020)* [En proceso de revisión], en el que debido a limitaciones de espacio no fue posible incluirlas pero que son valiosas para los interesados en el tema. 
+
+El documento está organizado en tres partes: Representación indígena por 1) Asamblea, cámara, partido político y circunscripción, 2) por organización social y género, 3) por nación y pueblo.
+
+La base de datos con la información completa de los legisladores del periodo se encuentra disponible en la carpeta data/ de este respositorio GitHub. 
+
+
+
+## Representación indígena por cámara, partido político  y circunscripción
+
+
+```{r}
+#install.packages(tidyverse)
+#install.packages(knitr)
+
+library(tidyverse)
+library(knitr)
+```
+
+```{r}
+# Cargando los datos
+
+ALP_2010_2015 <- read.csv("/home/drux/Documentos/Escritos  y trabajos mios/Artículos Científicos/Representación indígena/2026 Representación descriptiva/Projects/indigenous-representation-alp-bolivia/data/ALP_2010_2015.csv") %>%
+  mutate(INDIGENA = ifelse(INDIGENA == 0, "No indígena", "Indígena"),
+         GENERO = ifelse(GENERO == "H", "Hombre", "Mujer"))
+
+ALP_2015_2020 <- read.csv("/home/drux/Documentos/Escritos  y trabajos mios/Artículos Científicos/Representación indígena/2026 Representación descriptiva/Projects/indigenous-representation-alp-bolivia/data/ALP_2015_2020.csv") %>%
+  mutate(INDIGENA = ifelse(INDIGENA == 0, "No indígena", "Indígena"),
+         GENERO = ifelse(GENERO == "H", "Hombre", "Mujer"))
+
+```
+
+
+
+
+### Representación indígena y no indígena en la Asamblea Legislativa Plurinacional (2010 - 2015)
+
+```{r}
+#Representación indígena 2010 - 2015
+
+ALP_2010_2015 %>%
+  group_by(INDIGENA) %>%
+  tally() %>%
+  mutate(Porcentaje = n/sum(n)*100) %>%
+  kable(
+    caption = "Tabla 1. Representación indígena en la Asamblea Legislativa Plurinacional (2010–2015)",
+  col.names = c("Identificación indígena", "Frecuencia", "Porcentaje"),
+  align = c("lcr"),
+  digits = 2
+  )
+
+#Representación indígena 2015 - 2020
+
+ALP_2015_2020 %>%
+  group_by(INDIGENA) %>%
+  tally() %>%
+  mutate(Porcentaje = n/sum(n)*100) %>%
+  kable(
+    caption = "Tabla 2. Representación indígena en la Asamblea Legislativa Plurinacional (2015–2020)",
+  col.names = c("Identificación indígena", "Frecuencia", "Porcentaje"),
+  align = c("lcr"),
+  digits = 2
+  )
+```
+### Representantes indígenas por cámara
+
+```{r}
+#Cámara de Senadores 2010 - 2015
+ALP_2010_2015 %>% 
+  filter(CAMARA == "Senador") %>%
+  group_by(INDIGENA) %>%
+  tally() %>%
+  mutate(Porcentaje = n/sum(n)*100) %>%
+  kable(
+    caption = "Tabla 3. Representación indígena en la Cámara de Senadores (2010–2015)",
+  col.names = c("Identificación indígena", "Frecuencia", "Porcentaje"),
+  align = c("lcr"),
+  digits = 2
+  )
+
+#Cámara de Diputados 2010 - 2015
+ALP_2010_2015 %>% 
+  filter(CAMARA == "Diputado") %>%
+  group_by(INDIGENA) %>%
+  tally() %>%
+  mutate(Porcentaje = n/sum(n)*100) %>%
+  kable(
+    caption = "Tabla 4. Representación indígena en la Cámara de Diputados (2010–2015)",
+  col.names = c("Identificación indígena", "Frecuencia", "Porcentaje"),
+  align = c("lcr"),
+  digits = 2
+  )
+
+#Cámara de Senadores 2015 - 2020
+ALP_2015_2020 %>% 
+  filter(CAMARA == "Senador") %>%
+  group_by(INDIGENA) %>%
+  tally() %>%
+  mutate(Porcentaje = n/sum(n)*100) %>%
+  kable(
+    caption = "Tabla 5. Representación indígena en la Cámara de Senadores (2015–2020)",
+  col.names = c("Identificación indígena", "Frecuencia", "Porcentaje"),
+  align = c("lcr"),
+  digits = 2
+  )
+
+#Cámara de Diputados 2015 - 2020
+ALP_2015_2020 %>% 
+  filter(CAMARA == "Diputado") %>%
+  group_by(INDIGENA) %>%
+  tally() %>%
+  mutate(Porcentaje = n/sum(n)*100) %>%
+  kable(
+    caption = "Tabla 6. Representación indígena en la Cámara de Diputados (2015–2020)",
+  col.names = c("Identificación indígena", "Frecuencia", "Porcentaje"),
+  align = c("lcr"),
+  digits = 2
+  )
+```
+
+
+
+### Representación indígena total por partido político
+
+```{r}
+#Distribución total de representantes indígenas entre los partidos
+ALP_2010_2015 %>% 
+  filter(INDIGENA == "Indígena") %>%
+  group_by(PARTIDO) %>%
+  tally() %>%
+  mutate(Porcentaje = n/sum(n)*100) %>%
+  arrange(-n) %>%
+  kable(
+    caption = "Tabla 7. Representación indígena total en la Asamblea Legislativa Plurinacional por partido político (2010–2015)",
+  col.names = c("Partido",  "Frecuencia", "Porcentaje"),
+  align = c("lcr"),
+  digits = 2
+  )
+
+ALP_2015_2020 %>% 
+  filter(INDIGENA == "Indígena") %>%
+  group_by(PARTIDO) %>%
+  tally() %>%
+  mutate(Porcentaje = n/sum(n)*100) %>%
+  arrange(-n) %>%
+  kable(
+    caption = "Tabla 8. Representación indígena total en la Asamblea Legislativa Plurinacional por partido político (2015–2020)",
+  col.names = c("Partido",  "Frecuencia", "Porcentaje"),
+  align = c("lcr"),
+  digits = 2
+  )
+
+
+ALP_2010_2015 %>%
+  group_by(PARTIDO, INDIGENA) %>%
+  tally() %>%
+  mutate(Porcentaje = n/sum(n)*100) %>%
+  arrange(-n) %>%
+  kable(
+    caption = "Tabla 9. Número de representantes indígenas y no indígenas por partido político (2010–2015)",
+  col.names = c("Partido", "Identificación indígena", "Frecuencia", "Porcentaje"),
+  align = c("lccr"),
+  digits = 2
+  )
+
+ALP_2015_2020 %>%
+  group_by(PARTIDO, INDIGENA) %>%
+  tally() %>%
+  mutate(Porcentaje = n/sum(n)*100) %>%
+  arrange(-n) %>%
+  kable(
+    caption = "Tabla 10. Número de representantes indígenas y no indígenas por partido político (2015–2020)",
+  col.names = c("Partido", "Identificación indígena", "Frecuencia", "Porcentaje"),
+  align = c("lccr"),
+  digits = 2
+  )
+
+```
+
+
+
+### Representación indígena por circunscripción de la Cámara de Diputados
+
+```{r}
+ALP_2010_2015 %>% 
+  filter(INDIGENA == "Indígena",
+         CAMARA == "Diputado") %>%
+  mutate(CIRCUNS = case_when(CIRCUNS == "Pluri" ~ "Plurinominal", CIRCUNS == "Ind" ~ "Circunscripción especial indígena", TRUE ~ "Uninominal")) %>%
+  group_by(CIRCUNS) %>%
+  tally() %>%
+  mutate(Porcentaje = n/sum(n)*100) %>%
+  arrange(-n) %>%
+  kable(
+    caption = "Tabla 11. Representación indígena por circunscripción en la Cámara de Diputados (2010–2015)",
+  col.names = c("Circunscripción",  "Frecuencia", "Porcentaje"),
+  align = c("lcr"),
+  digits = 2
+  )
+
+ALP_2015_2020 %>% 
+  filter(INDIGENA == "Indígena",
+         CAMARA == "Diputado") %>%
+  mutate(CIRCUNS = case_when(CIRCUNS == "Pluri" ~ "Plurinominal", CIRCUNS == "Ind" ~ "Circunscripción especial indígena", TRUE ~ "Uninominal")) %>%
+  group_by(CIRCUNS) %>%
+  tally() %>%
+  mutate(Porcentaje = n/sum(n)*100) %>%
+  arrange(-n) %>%
+  kable(
+    caption = "Tabla 12. Representación indígena por circunscripción en la Cámara de Diputados (2015–2020)",
+  col.names = c("Circunscripción",  "Frecuencia", "Porcentaje"),
+  align = c("lcr"),
+  digits = 2
+  )
+```
+
+
+
+
+### Representación indígena por partido y circunscripción de la Cámara de Diputados
+```{r}
+ALP_2010_2015 %>% 
+  filter(INDIGENA == "Indígena",
+         CAMARA == "Diputado") %>%
+  mutate(CIRCUNS = case_when(CIRCUNS == "Pluri" ~ "Plurinominal", CIRCUNS == "Ind" ~ "Circunscripción especial indígena", TRUE ~ "Uninominal")) %>%
+  group_by(PARTIDO, CIRCUNS) %>%
+  tally() %>%
+  mutate(Porcentaje = n/sum(n)*100) %>%
+  arrange(-n) %>%
+  kable(
+    caption = "Tabla 13. Representación indígena por partido y circunscripción en la Cámara de Diputados (2010–2015)",
+  col.names = c("Partido", "Circunscripción",  "Frecuencia", "Porcentaje"),
+  align = c("lcr"),
+  digits = 2
+  )
+
+ALP_2015_2020 %>% 
+  filter(INDIGENA == "Indígena",
+         CAMARA == "Diputado") %>%
+  mutate(CIRCUNS = case_when(CIRCUNS == "Pluri" ~ "Plurinominal", CIRCUNS == "Ind" ~ "Circunscripción especial indígena", TRUE ~ "Uninominal")) %>%
+  group_by(PARTIDO, CIRCUNS) %>%
+  tally() %>%
+  mutate(Porcentaje = n/sum(n)*100) %>%
+  arrange(-n) %>%
+  kable(
+    caption = "Tabla 14. Representación indígena por partido y circunscripción en la Cámara de Diputados (2010–2015)",
+  col.names = c("Partido", "Circunscripción",  "Frecuencia", "Porcentaje"),
+  align = c("lcr"),
+  digits = 2
+  )
+```
+
+## Representación indígena por género y organización social
+
+### Representación indígena por género
+
+```{r}
+#Cámara de senadores 2010-2015
+ALP_2010_2015 %>%
+  filter(CAMARA == "Senador") %>%
+  group_by(GENERO, INDIGENA) %>%
+  tally() %>%
+  mutate(Porcentaje = n/sum(n)*100) %>%
+  kable(
+    caption = "Tabla 15. Representación indígena y no indígena por género en la Cámara de Senadores (2010–2015)",
+  col.names = c("Género", "Identificación indígena",  "Frecuencia", "Porcentaje"),
+  align = c("lcr"),
+  digits = 2
+  )
+
+#Cámara de diputados 2010 -2015
+
+ALP_2010_2015 %>%
+  filter(CAMARA == "Diputado") %>%
+  group_by(GENERO, INDIGENA) %>%
+  tally() %>%
+  mutate(Porcentaje = n/sum(n)*100) %>%
+  kable(
+    caption = "Tabla 15. Representación indígena y no indígena por género en la Cámara de Diputados (2010–2015)",
+  col.names = c("Género", "Identificación indígena",  "Frecuencia", "Porcentaje"),
+  align = c("lcr"),
+  digits = 2
+  )
+
+#Cámara de senadores 2015-2020
+
+ALP_2015_2020 %>%
+  filter(CAMARA == "Senador") %>%
+  group_by(GENERO, INDIGENA) %>%
+  tally() %>%
+  mutate(Porcentaje = n/sum(n)*100) %>%
+  kable(
+    caption = "Tabla 16. Representación indígena y no indígena por género en la Cámara de Senadores (2015–2020)",
+  col.names = c("Género", "Identificación indígena",  "Frecuencia", "Porcentaje"),
+  align = c("lcr"),
+  digits = 2
+  )
+
+#Cámara de diputados 2015 -2020
+
+ALP_2015_2020 %>%
+  filter(CAMARA == "Diputado") %>%
+  group_by(GENERO, INDIGENA) %>%
+  tally() %>%
+  mutate(Porcentaje = n/sum(n)*100) %>%
+  kable(
+    caption = "Tabla 15. Representación indígena y no indígena por género en la Cámara de Diputados (2015–2020)",
+  col.names = c("Género", "Identificación indígena",  "Frecuencia", "Porcentaje"),
+  align = c("lcr"),
+  digits = 2
+  )
+
+```
+
+### Representación indígena por organización social
+
+```{r}
+# Asamblea Legislativa Pluriancional 2010 - 2015
+ALP_2010_2015 %>%
+  filter(INDIGENA == "Indígena") %>%
+  group_by(ORG_SOC) %>%
+  tally() %>%
+  arrange(-n)  %>%
+  kable(
+    caption = "Tabla 16. Representación indígena por organización social en la Asamblea Legislativa Plurinacional (2010–2015)",
+  col.names = c("Organización social", "Frecuencia"),
+  align = c("lr"),
+  digits = 2
+  )
+
+#Asamblea Legislativa Plurinacional 2015-2020
+
+ALP_2015_2020 %>%
+  filter(INDIGENA == "Indígena") %>%
+  group_by(ORG_SOC) %>%
+  tally() %>%
+  arrange(-n) %>%
+   kable(
+    caption = "Tabla 17.Representación indígena por organización social en la Asamblea Legislativa Plurinacional (2015–2020)",
+  col.names = c("Organización social", "Frecuencia"),
+  align = c("lr"),
+  digits = 2
+  )
+```
+
+## Representación indígena por nación y pueblo
+
+```{r}
+
+#Asamblea Legislativa Plurinacional 2010-2015
+
+ALP_2010_2015 %>%
+  group_by(ETNICIDAD) %>%
+  tally() %>%
+  mutate(Porcentaje = n/sum(n)*100) %>%
+  arrange(-n) %>%
+  kable(
+    caption = "Tabla 18. Representación por nación y pueblo en la Asamblea Legislativa Plurinacional (2010–2015)",
+  col.names = c("Pueblo indígena", "Frecuencia", "Porcentaje"),
+  align = c("lcr"),
+  digits = 2
+  )
+
+#Cámara de Senadores 2010 - 2015
+
+ALP_2010_2015 %>%
+  filter(CAMARA == "Senador") %>%
+  group_by(ETNICIDAD) %>%
+  tally() %>%
+  mutate(Porcentaje = n/sum(n)*100) %>%
+  arrange(-n) %>%
+  kable(
+    caption = "Tabla 19. Representación por nación y pueblo en la Cámara de Senadores (2010–2015)",
+  col.names = c("Pueblo indígena", "Frecuencia", "Porcentaje"),
+  align = c("lcr"),
+  digits = 2
+  )
+
+#Cámara de Diputados 2010 - 2015
+
+ALP_2010_2015 %>%
+  filter(CAMARA == "Diputado") %>%
+  group_by(ETNICIDAD) %>%
+  tally() %>%
+  mutate(Porcentaje = n/sum(n)*100) %>%
+  arrange(-n) %>%
+  kable(
+    caption = "Tabla 20.  Representación por nación y pueblo en la Cámara de Diputados (2010–2015)",
+  col.names = c("Pueblo indígena", "Frecuencia", "Porcentaje"),
+  align = c("lcr"),
+  digits = 2
+  )
+
+#Asamblea Legislativa Plurinacional 2015- 2020
+
+ALP_2015_2020 %>%
+  group_by(ETNICIDAD) %>%
+  tally() %>%
+  mutate(Porcentaje = n/sum(n)*100) %>%
+  arrange(-n) %>%
+  kable(
+    caption = "Tabla 21. Representación por nación y pueblo en la Asamblea Legislativa Plurinacional (2015–2020)",
+  col.names = c("Pueblo indígena", "Frecuencia", "Porcentaje"),
+  align = c("lcr"),
+  digits = 2
+  )
+
+#Cámara de Senadores 2010 - 2015
+
+ALP_2015_2020 %>%
+  filter(CAMARA == "Senador") %>%
+  group_by(ETNICIDAD) %>%
+  tally() %>%
+  mutate(Porcentaje = n/sum(n)*100) %>%
+  arrange(-n) %>%
+  kable(
+    caption = "Tabla 22. Representación por nación y pueblo en la Cámara de Senadores (2015–2020)",
+  col.names = c("Pueblo indígena", "Frecuencia", "Porcentaje"),
+  align = c("lcr"),
+  digits = 2
+  )
+
+#Cámara de Diputados 2010 - 2015
+
+ALP_2015_2020 %>%
+  filter(CAMARA == "Diputado") %>%
+  group_by(ETNICIDAD) %>%
+  tally() %>%
+  mutate(Porcentaje = n/sum(n)*100) %>%
+  arrange(-n) %>%
+  kable(
+    caption = "Tabla 22. Representación por nación y pueblo en la Cámara de Diputados (2015–2020)",
+  col.names = c("Pueblo indígena", "Frecuencia", "Porcentaje"),
+  align = c("lcr"),
+  digits = 2
+  )
+```
+
