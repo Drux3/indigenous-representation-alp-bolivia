@@ -11,11 +11,11 @@ knitr::opts_chunk$set(echo=FALSE, error=FALSE, warning=FALSE, message=FALSE)
 
 ## Introducción
 
-En este documento se presentan un conjunto de tablas que describen las características de la representación indígena en la Asamblea Legislativa Plurinacional de Bolivia del 2010 al 2020. Constituye un complemento digital del artículo *¿Presentes? Representación descriptiva de los pueblos indígenas en la Asamblea Legislativa Plurinacional de Bolivia (2010 - 2020)* [En proceso de revisión], en el que debido a limitaciones de espacio no fue posible incluirlas pero que son valiosas para los interesados en el tema. 
+Se presentan un conjunto de tablas que describen las características de la representación indígena en la Asamblea Legislativa Plurinacional de Bolivia del 2010 al 2020. Constituye un complemento digital del artículo *¿Presentes? Representación descriptiva de los pueblos indígenas en la Asamblea Legislativa Plurinacional de Bolivia (2010 - 2020)* [En proceso de revisión], en el que debido a limitaciones de espacio no fue posible incluirlas pero que son valiosas para los interesados en el tema. 
 
 El documento está organizado en tres partes: Representación indígena por 1) Asamblea, cámara, partido político y circunscripción, 2) por organización social y género, 3) por nación y pueblo.
 
-La base de datos con la información completa de los legisladores del periodo se encuentra disponible en la carpeta data/ de este respositorio GitHub. 
+La base de datos con la información completa de los legisladores del periodo se encuentra disponible en la carpeta data/ del repositorio https://github.com/Drux3/indigenous-representation-alp-bolivia. 
 
 
 
@@ -251,7 +251,7 @@ ALP_2015_2020 %>%
   mutate(Porcentaje = n/sum(n)*100) %>%
   arrange(-n) %>%
   kable(
-    caption = "Tabla 14. Representación indígena por partido y circunscripción en la Cámara de Diputados (2010–2015)",
+    caption = "Tabla 14. Representación indígena por partido y circunscripción en la Cámara de Diputados (2015–2020)",
   col.names = c("Partido", "Circunscripción",  "Frecuencia", "Porcentaje"),
   align = c("lcr"),
   digits = 2
@@ -284,7 +284,7 @@ ALP_2010_2015 %>%
   tally() %>%
   mutate(Porcentaje = n/sum(n)*100) %>%
   kable(
-    caption = "Tabla 15. Representación indígena y no indígena por género en la Cámara de Diputados (2010–2015)",
+    caption = "Tabla 16. Representación indígena y no indígena por género en la Cámara de Diputados (2010–2015)",
   col.names = c("Género", "Identificación indígena",  "Frecuencia", "Porcentaje"),
   align = c("lcr"),
   digits = 2
@@ -298,7 +298,7 @@ ALP_2015_2020 %>%
   tally() %>%
   mutate(Porcentaje = n/sum(n)*100) %>%
   kable(
-    caption = "Tabla 16. Representación indígena y no indígena por género en la Cámara de Senadores (2015–2020)",
+    caption = "Tabla 17. Representación indígena y no indígena por género en la Cámara de Senadores (2015–2020)",
   col.names = c("Género", "Identificación indígena",  "Frecuencia", "Porcentaje"),
   align = c("lcr"),
   digits = 2
@@ -312,7 +312,7 @@ ALP_2015_2020 %>%
   tally() %>%
   mutate(Porcentaje = n/sum(n)*100) %>%
   kable(
-    caption = "Tabla 15. Representación indígena y no indígena por género en la Cámara de Diputados (2015–2020)",
+    caption = "Tabla 18. Representación indígena y no indígena por género en la Cámara de Diputados (2015–2020)",
   col.names = c("Género", "Identificación indígena",  "Frecuencia", "Porcentaje"),
   align = c("lcr"),
   digits = 2
@@ -330,7 +330,7 @@ ALP_2010_2015 %>%
   tally() %>%
   arrange(-n)  %>%
   kable(
-    caption = "Tabla 16. Representación indígena por organización social en la Asamblea Legislativa Plurinacional (2010–2015)",
+    caption = "Tabla 19. Representación indígena por organización social en la Asamblea Legislativa Plurinacional (2010–2015)",
   col.names = c("Organización social", "Frecuencia"),
   align = c("lr"),
   digits = 2
@@ -344,7 +344,7 @@ ALP_2015_2020 %>%
   tally() %>%
   arrange(-n) %>%
    kable(
-    caption = "Tabla 17.Representación indígena por organización social en la Asamblea Legislativa Plurinacional (2015–2020)",
+    caption = "Tabla 20.Representación indígena por organización social en la Asamblea Legislativa Plurinacional (2015–2020)",
   col.names = c("Organización social", "Frecuencia"),
   align = c("lr"),
   digits = 2
@@ -363,7 +363,7 @@ ALP_2010_2015 %>%
   mutate(Porcentaje = n/sum(n)*100) %>%
   arrange(-n) %>%
   kable(
-    caption = "Tabla 18. Representación por nación y pueblo en la Asamblea Legislativa Plurinacional (2010–2015)",
+    caption = "Tabla 21. Representación por nación y pueblo en la Asamblea Legislativa Plurinacional (2010–2015)",
   col.names = c("Pueblo indígena", "Frecuencia", "Porcentaje"),
   align = c("lcr"),
   digits = 2
@@ -378,7 +378,7 @@ ALP_2010_2015 %>%
   mutate(Porcentaje = n/sum(n)*100) %>%
   arrange(-n) %>%
   kable(
-    caption = "Tabla 19. Representación por nación y pueblo en la Cámara de Senadores (2010–2015)",
+    caption = "Tabla 22. Representación por nación y pueblo en la Cámara de Senadores (2010–2015)",
   col.names = c("Pueblo indígena", "Frecuencia", "Porcentaje"),
   align = c("lcr"),
   digits = 2
@@ -393,7 +393,7 @@ ALP_2010_2015 %>%
   mutate(Porcentaje = n/sum(n)*100) %>%
   arrange(-n) %>%
   kable(
-    caption = "Tabla 20.  Representación por nación y pueblo en la Cámara de Diputados (2010–2015)",
+    caption = "Tabla 23.  Representación por nación y pueblo en la Cámara de Diputados (2010–2015)",
   col.names = c("Pueblo indígena", "Frecuencia", "Porcentaje"),
   align = c("lcr"),
   digits = 2
@@ -407,13 +407,13 @@ ALP_2015_2020 %>%
   mutate(Porcentaje = n/sum(n)*100) %>%
   arrange(-n) %>%
   kable(
-    caption = "Tabla 21. Representación por nación y pueblo en la Asamblea Legislativa Plurinacional (2015–2020)",
+    caption = "Tabla 24. Representación por nación y pueblo en la Asamblea Legislativa Plurinacional (2015–2020)",
   col.names = c("Pueblo indígena", "Frecuencia", "Porcentaje"),
   align = c("lcr"),
   digits = 2
   )
 
-#Cámara de Senadores 2010 - 2015
+#Cámara de Senadores 2015 - 2020
 
 ALP_2015_2020 %>%
   filter(CAMARA == "Senador") %>%
@@ -422,13 +422,13 @@ ALP_2015_2020 %>%
   mutate(Porcentaje = n/sum(n)*100) %>%
   arrange(-n) %>%
   kable(
-    caption = "Tabla 22. Representación por nación y pueblo en la Cámara de Senadores (2015–2020)",
+    caption = "Tabla 25. Representación por nación y pueblo en la Cámara de Senadores (2015–2020)",
   col.names = c("Pueblo indígena", "Frecuencia", "Porcentaje"),
   align = c("lcr"),
   digits = 2
   )
 
-#Cámara de Diputados 2010 - 2015
+#Cámara de Diputados 2015 - 2020
 
 ALP_2015_2020 %>%
   filter(CAMARA == "Diputado") %>%
@@ -437,7 +437,7 @@ ALP_2015_2020 %>%
   mutate(Porcentaje = n/sum(n)*100) %>%
   arrange(-n) %>%
   kable(
-    caption = "Tabla 22. Representación por nación y pueblo en la Cámara de Diputados (2015–2020)",
+    caption = "Tabla 26. Representación por nación y pueblo en la Cámara de Diputados (2015–2020)",
   col.names = c("Pueblo indígena", "Frecuencia", "Porcentaje"),
   align = c("lcr"),
   digits = 2
